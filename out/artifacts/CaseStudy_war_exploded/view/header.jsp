@@ -8,19 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <title>header</title>
+
 </head>
 <body>
 <header class="container-fluid ">
     <nav class="navbar navbar-expand-md bg-white navbar-white fixed-top">
-        <a class="nav-link navbar-brand" href="#"><img height="50" src="view/img/background/logo.png" width="145"/></a>
+        <a class="nav-link navbar-brand" href="/products"><img height="50" src="view/img/background/logo.png" width="145"/></a>
         <button class="navbar-toggler" data-target="#collapsibleNavbar" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#"><span class="text-dark">Trang chủ</span></a>
+                    <a class="nav-link" href="/products"><span class="text-dark">Trang chủ</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbardropComputer">
@@ -43,7 +45,7 @@
                         <a class="dropdown-item" href="#">Áo Nữ</a>
                         <a class="dropdown-item" href="#">Váy Nữ</a>
                         <a class="dropdown-item" href="#">Quần Nữ</a>
-                        <a class="dropdown-item" href="#">Sản phẩm Sale</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=display">Tất Cả Sản Phẩm</a>
 
                     </div>
                 </li>
