@@ -57,10 +57,9 @@
                         <span class="text-dark">Liên Hệ</span>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Surface Deals</a>
-                        <a class="dropdown-item" href="#">Surface Bundles</a>
-                        <a class="dropdown-item" href="#">All Surface Device</a>
-                        <a class="dropdown-item" href="#">Where to buy</a>
+                        <a class="dropdown-item" href="#">Cá Nhân</a>
+                        <a class="dropdown-item" href="#">Doanh Nghiệp</a>
+
                     </div>
                 </li>
 

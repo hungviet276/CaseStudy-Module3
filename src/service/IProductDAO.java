@@ -9,7 +9,10 @@ public interface IProductDAO {
     public void insertProduct(Product product) throws SQLException;
 
     public Product selectProductByCode(String code);
-    public Product selectProductByName(String name);
+    public List<Product>  selectProductDress();
+    public List<Product>  selectProductShirt();
+    public List<Product>  selectProductTrousers();
+    public List<Product>  selectProductByName(String name);
 
     public List<Product> selectAllProduct();
 

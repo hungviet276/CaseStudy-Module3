@@ -14,3 +14,4 @@ ALTER TABLE products MODIFY COLUMN id INT AUTO_INCREMENT;
 insert into products (code,name,category,quantity,price,pathImage) VALUES ('vay1','vay xoe','dress',20,250000,'view/img/product/vay1.png');
 SELECT * from products where name like '%vay%';
 SELECT * from products where code = 'vay1';
+SELECT * from products where category='dress';

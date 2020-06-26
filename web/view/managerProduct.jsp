@@ -25,20 +25,32 @@
                         Danh Mục Sản Phẩm
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Áo Nữ</a>
-                        <a class="dropdown-item" href="#">Váy Nữ</a>
-                        <a class="dropdown-item" href="#">Quần Nữ</a>
-                        <a class="dropdown-item" href="#">Tất Cả Sản Phẩm</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayShirt">Áo Nữ</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayDress">Váy Nữ</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayTrousers">Quần Nữ</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=display">Tất Cả Sản Phẩm</a>
 
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/products?action=create">Thêm sản phẩm mới</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sắp Xếp Sản Phẩm
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayPriceUp&list='${listProduct}'">Giá Tăng Dần</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayPriceDown&list='${listProduct}'">Giá Giảm Dần</a>
+
+                    </div>
+                </li>
+
+
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" method="post" action="products?action=search">
+                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -54,8 +66,8 @@
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${product.price}</p>
-                    <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=edit" style="width: 90px">Edit</a>
-                    <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=delete" style="width: 90px">Delete</a>
+                    <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=edit&code=${product.code}" style="width: 90px">Edit</a>
+                    <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=delete&code=${product.code}" style="width: 90px">Delete</a>
                 </div>
             </div>
         </div>

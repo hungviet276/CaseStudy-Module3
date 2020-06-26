@@ -4,9 +4,7 @@ import model.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ProductDAO implements IProductDAO {
     private String jdbcURL = "jdbc:mysql://localhost:3306/democasestudy";
@@ -15,11 +13,13 @@ public class ProductDAO implements IProductDAO {
     private static final String INSERT_PRODUCT_SQL = "INSERT INTO products" + "  (code,name,category,quantity,price,pathImage) VALUES " +
             " (?,?,?,?,?,?);";
     private static final String SELECT_PRODUCT_BY_CODE = "select * from products where code =?";
-    private static final String SELECT_PRODUCT_BY_NAME = "select * from products where name like %?%";
+    private static final String SELECT_PRODUCT_BY_NAME = "select * from products where name like ? or code like ?";
     private static final String SELECT_ALL_PRODUCTS = "select * from products";
     private static final String DELETE_PRODUCT_SQL = "delete from products where code = ?;";
     private static final String UPDATE_PRODUCT_SQL = "update products set code = ?,name= ?, category =?, quantity = ?, price =? , pathImage =? where code = ?;";
-
+    private static final String SELECT_PRODUCT_DRESS ="SELECT * from products where category='dress'";
+    private static final String SELECT_PRODUCT_SHIRT ="SELECT * from products where category = 'shirt'";
+    private static final String SELECT_PRODUCT_TROUSERS ="SELECT * from products where category = 'trousers'";
     public ProductDAO() {
     }
 
@@ -80,27 +80,114 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public Product selectProductByName(String name) {
-
-        Product product = null;
+    public List<Product> selectProductDress() {
+        List<Product> products = new ArrayList<>();
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_NAME);){
-            preparedStatement.setString(1,name);
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_DRESS);) {
             System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()){
-                String code  =rs.getString("code");
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                String code = rs.getString("code");
+                String name = rs.getString("name");
                 String category = rs.getString("category");
                 int quantity = rs.getInt("quantity");
                 double price = rs.getDouble("price");
                 String pathImage = rs.getString("pathImage");
-                product = new Product(code,name,category,quantity,price,pathImage);
+                products.add(new Product(code,name,category,quantity,price,pathImage));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);;
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> selectProductShirt() {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_SHIRT);) {
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                String code = rs.getString("code");
+                String name = rs.getString("name");
+                String category = rs.getString("category");
+                int quantity = rs.getInt("quantity");
+                double price = rs.getDouble("price");
+                String pathImage = rs.getString("pathImage");
+                products.add(new Product(code,name,category,quantity,price,pathImage));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);;
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> selectProductTrousers() {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_TROUSERS);) {
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                String code = rs.getString("code");
+                String name = rs.getString("name");
+                String category = rs.getString("category");
+                int quantity = rs.getInt("quantity");
+                double price = rs.getDouble("price");
+                String pathImage = rs.getString("pathImage");
+                products.add(new Product(code,name,category,quantity,price,pathImage));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);;
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> selectProductByName(String inputSearch) {
+        String search = "%" + inputSearch +"%";
+
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_NAME);){
+            preparedStatement.setString(1,search);
+            preparedStatement.setString(2,search);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()){
+                String code  =rs.getString("code");
+                String name = rs.getString("name");
+                String category = rs.getString("category");
+                int quantity = rs.getInt("quantity");
+                double price = rs.getDouble("price");
+                String pathImage = rs.getString("pathImage");
+               products.add(new Product(code,name,category,quantity,price,pathImage));
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return product;
+        return products;
     }
 
 
