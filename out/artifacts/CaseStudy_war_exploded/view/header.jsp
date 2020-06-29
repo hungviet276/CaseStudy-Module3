@@ -14,9 +14,10 @@
 
 </head>
 <body>
-<header class="container-fluid ">
+<header class="container">
     <nav class="navbar navbar-expand-md bg-white navbar-white fixed-top">
-        <a class="nav-link navbar-brand" href="/products"><img height="50" src="view/img/background/logo.png" width="145"/></a>
+        <a class="nav-link navbar-brand" href="/products"><img height="50" src="view/img/background/logo.png"
+                                                               width="145"/></a>
         <button class="navbar-toggler" data-target="#collapsibleNavbar" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,7 +47,8 @@
                         <a class="dropdown-item" href="#">Áo Nữ</a>
                         <a class="dropdown-item" href="#">Váy Nữ</a>
                         <a class="dropdown-item" href="#">Quần Nữ</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=display">Tất Cả Sản Phẩm</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=display">Tất
+                            Cả Sản Phẩm</a>
 
                     </div>
                 </li>
@@ -66,23 +68,41 @@
 
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/users?action=login"><c:out value="${login}"/></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/users?action=create"><c:out value="${signup}"/></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbardropShop">
-                        <span class="text-dark"><c:out value="${admin}"/></span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Manager Product</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/users?action=display">Manager User</a>
-                        <a class="dropdown-item" href="#"><c:out value="${logOut}"/></a>
+                <c:choose>
+                    <c:when test="${user ==null}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/users?action=login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/users?action=create">Signup</a>
+                        </li>
+                    </c:when>
+                    <c:when test="${user.userName == 'admin'}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbardropShop">
+                                <span class="text-dark"><c:out value="${user.userName}"/></span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Product</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/users?action=display">
+                                    User</a>
+                                <a class="dropdown-item" href="logout">Logout</a>
 
-                    </div>
-                </li>
+                            </div>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbardropShop">
+                                <span class="text-dark"><c:out value="${user.userName}"/></span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="logout">Logout</a>
+
+                            </div>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
     </nav>

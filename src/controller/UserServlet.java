@@ -107,10 +107,23 @@ public class UserServlet extends HttpServlet {
             case "display":
                 listUser(request,response);
                 break;
+            case "login":
+                login(request,response);
+                break;
 
         }
     }
 
+    private void login(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/login.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) {
