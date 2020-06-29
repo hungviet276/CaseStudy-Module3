@@ -20,6 +20,9 @@ public class ProductDAO implements IProductDAO {
     private static final String SELECT_PRODUCT_DRESS ="SELECT * from products where category='dress'";
     private static final String SELECT_PRODUCT_SHIRT ="SELECT * from products where category = 'shirt'";
     private static final String SELECT_PRODUCT_TROUSERS ="SELECT * from products where category = 'trousers'";
+    private static final String SORT_BY_PRICE_UP ="SELECT * FROM products order by price ASC";
+    private static final String SORT_BY_PRICE_DOWN ="SELECT * FROM products order by price DESC";
+
     public ProductDAO() {
     }
 
@@ -163,6 +166,62 @@ public class ProductDAO implements IProductDAO {
         return products;
     }
 
+    @Override
+    public List<Product> sortByPriceUp() {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SORT_BY_PRICE_UP);) {
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                String code = rs.getString("code");
+                String name = rs.getString("name");
+                String category = rs.getString("category");
+                int quantity = rs.getInt("quantity");
+                double price = rs.getDouble("price");
+                String pathImage = rs.getString("pathImage");
+                products.add(new Product(code,name,category,quantity,price,pathImage));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);;
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> sortByPriceDown() {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             // Step 2:Create a statement using connection object
+             PreparedStatement preparedStatement = connection.prepareStatement(SORT_BY_PRICE_DOWN);) {
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            ResultSet rs = preparedStatement.executeQuery();
+
+            // Step 4: Process the ResultSet object.
+            while (rs.next()) {
+                String code = rs.getString("code");
+                String name = rs.getString("name");
+                String category = rs.getString("category");
+                int quantity = rs.getInt("quantity");
+                double price = rs.getDouble("price");
+                String pathImage = rs.getString("pathImage");
+                products.add(new Product(code, name, category, quantity, price, pathImage));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+            ;
+        }
+        return products;
+    }
     @Override
     public List<Product> selectProductByName(String inputSearch) {
         String search = "%" + inputSearch +"%";

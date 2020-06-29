@@ -121,14 +121,41 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "displayPriceUp":
                 listPriceUp(request,response);
+                break;
+            case "displayPriceDown":
+                listPriceDown(request,response);
+                break;
             default:
                 home(request,response);
                 break;
         }
     }
 
-    private void listPriceUp(HttpServletRequest request, HttpServletResponse response) {
+    private void listPriceDown(HttpServletRequest request, HttpServletResponse response) {
+        List<Product> products = productDAO.sortByPriceDown();
+        request.setAttribute("listProduct",products);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/managerProduct.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    private void listPriceUp(HttpServletRequest request, HttpServletResponse response) {
+        List<Product> products = productDAO.sortByPriceUp();
+        request.setAttribute("listProduct",products);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/managerProduct.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -248,7 +275,11 @@ public class ProductServlet extends HttpServlet {
     }
 
     private void home(HttpServletRequest request, HttpServletResponse response) {
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/home.jsp");
+        request.setAttribute("login","Login");
+        request.setAttribute("signup","Signup");
+        request.setAttribute("admin","admin");
         try {
             requestDispatcher.forward(request,response);
         } catch (ServletException e) {

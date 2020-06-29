@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: admin
@@ -66,13 +67,21 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img height="20" src="view/img/background/iconSearch.png" width="20"/></a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users?action=login"><c:out value="${login}"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img height="20" src="view/img/background/shopping-cart.png" width="20"/></a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/users?action=create"><c:out value="${signup}"/></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><img height="20" src="view/img/background/login.png" width="20"/></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbardropShop">
+                        <span class="text-dark"><c:out value="${admin}"/></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Manager Product</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/users?action=display">Manager User</a>
+                        <a class="dropdown-item" href="#"><c:out value="${logOut}"/></a>
+
+                    </div>
                 </li>
             </ul>
         </div>

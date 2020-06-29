@@ -12,38 +12,77 @@
     <title>Signup</title>
     <link rel="stylesheet" type="text/css" href="view/css/styleSignup.css">
     <c:import url="head.jsp"/>
+    <style>
+        .message{
+            color: #1904ff;
+        }
+    </style>
 </head>
 <body>
 <c:import url="header.jsp"/>
-<div id="login">
-    <h3 class="text-center text-white pt-5">Login form</h3>
-    <div class="container">
-        <div id="login-row" class="row justify-content-center align-items-center">
-            <div id="login-column" class="col-md-6">
-                <div id="login-box" class="col-md-12">
-                    <form id="login-form" class="form" action="" method="post">
-                        <h3 class="text-center text-info">Login</h3>
-                        <div class="form-group">
-                            <label for="username" class="text-info">Username:</label><br>
-                            <input type="text" name="username" id="username" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="text-info">Password:</label><br>
-                            <input type="text" name="password" id="password" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
-                        </div>
-                        <div id="register-link" class="text-right">
-                            <a href="#" class="text-info">Register here</a>
-                        </div>
-                    </form>
+<p>
+    <c:if test='${requestScope["message"] != null}'>
+        <span class="message">${requestScope["message"]}</span>
+    </c:if>
+</p>
+<main class="my-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Register</div>
+                    <div class="card-body">
+                        <form name="my-form" onsubmit="return validform()" action="users?action=create" method="post">
+                            <div class="form-group row">
+                                <label for="user_name" class="col-md-4 col-form-label text-md-right">User Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="user_name" placeholder="userName" name="userName" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="full_name" class="col-md-4 col-form-label text-md-right">Password</label>
+                                <div class="col-md-6">
+                                    <input type="password" class="form-control" id="full_name" name="password" placeholder="password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail</label>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" id="email_address" name="email" placeholder="email" required/>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group row">
+                                <label for="phone_number" class="col-md-4 col-form-label text-md-right">Phone Number</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="phone_number" class="form-control" name="phoneNumber" placeholder="phone">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="present_address" class="col-md-4 col-form-label text-md-right">Address</label>
+                                <div class="col-md-6">
+                                    <input type="text" id="present_address" class="form-control" name="address" placeholder="address">
+                                </div>
+                            </div>
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Register
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+</main>
+
 <c:import url="footer.jsp"/>
 </body>
 </html>

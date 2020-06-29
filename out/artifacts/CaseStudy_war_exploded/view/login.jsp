@@ -15,13 +15,11 @@
 </head>
 <body>
 <c:import url="header.jsp"/>
-<div id="login">
-    <h3 class="text-center text-white pt-5">Login form</h3>
-    <div class="container">
+    <div class="container" style="padding-bottom: 30px">
         <div id="login-row" class="row justify-content-center align-items-center">
             <div id="login-column" class="col-md-6">
                 <div id="login-box" class="col-md-12">
-                    <form id="login-form" class="form" action="" method="post">
+                    <form id="login-form" class="form" action="users?action=login" method="post">
                         <h3 class="text-center text-info">Login</h3>
                         <div class="form-group">
                             <label for="username" class="text-info">Username:</label><br>
@@ -36,14 +34,14 @@
                             <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
                         </div>
                         <div id="register-link" class="text-right">
-                            <a href="#" class="text-info">Register here</a>
+                            <a href="${pageContext.request.contextPath}/users?action=signup" class="text-info">Register here</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 <c:import url="footer.jsp"/>
 
 </body>

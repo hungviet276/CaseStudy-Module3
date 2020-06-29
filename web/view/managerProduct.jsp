@@ -40,8 +40,8 @@
                         Sắp Xếp Sản Phẩm
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayPriceUp&list='${listProduct}'">Giá Tăng Dần</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayPriceDown&list='${listProduct}'">Giá Giảm Dần</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayPriceUp">Giá Tăng Dần</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=displayPriceDown">Giá Giảm Dần</a>
 
                     </div>
                 </li>
@@ -65,7 +65,7 @@
                 <img alt="Card image cap" class="card-img-top" src="${product.pathImage}">
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${product.price}</p>
+                    <p class="card-text">${product.price}$</p>
                     <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=edit&code=${product.code}" style="width: 90px">Edit</a>
                     <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=delete&code=${product.code}" style="width: 90px">Delete</a>
                 </div>
