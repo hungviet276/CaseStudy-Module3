@@ -20,7 +20,7 @@
                 <h1 class="display-2  text-light mb-2 mt-5"><strong>Bông Boutique</strong></h1>
                 <p class="lead  text-light mb-5">Be comfortable, Be inspired, Be right at home</p>
                 <p><a class="btn bg-danger shadow-lg btn-round text-light btn-lg btn-rised"
-                      href="https://blueprintsapp.launchaco.com/">Shopping Now</a></p>
+                      href="${pageContext.request.contextPath}/products?action=display">Shopping Now</a></p>
 
                 <div class="btn-container-wrapper p-relative d-block  zindex-1">
                     <a class="btn btn-link btn-lg   mt-md-3 mb-4 scroll align-self-center text-light"

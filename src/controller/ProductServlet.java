@@ -131,6 +131,7 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+
     private void listPriceDown(HttpServletRequest request, HttpServletResponse response) {
         List<Product> products = productDAO.sortByPriceDown();
         request.setAttribute("listProduct",products);
@@ -259,10 +260,6 @@ public class ProductServlet extends HttpServlet {
 
     private void listProduct(HttpServletRequest request, HttpServletResponse response) {
         List<Product> products = productDAO.selectAllProduct();
-
-        //duet vay hong ad listvay -> xoa vay trong product
-        //sap xep product
-
         request.setAttribute("listProduct",products);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/managerProduct.jsp");
         try {

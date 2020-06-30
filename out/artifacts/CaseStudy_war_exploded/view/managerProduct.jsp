@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Manager Product</title>
+    <title>Manager Product Admin</title>
     <c:import url="head.jsp"/>
 </head>
 <body>
@@ -32,9 +32,14 @@
 
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/products?action=create">Thêm sản phẩm mới</a>
-                </li>
+                <c:choose>
+                    <c:when test="${user.userName == 'admin'}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/products?action=create">Thêm sản phẩm mới</a>
+                        </li>
+                    </c:when>
+                </c:choose>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sắp Xếp Sản Phẩm
@@ -65,9 +70,16 @@
                 <img alt="Card image cap" class="card-img-top" src="${product.pathImage}">
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
-                    <p class="card-text">${product.price}$</p>
-                    <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=edit&code=${product.code}" style="width: 90px">Edit</a>
-                    <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=delete&code=${product.code}" style="width: 90px">Delete</a>
+                    <p class="card-text">$${product.price}</p>
+                    <c:choose>
+                        <c:when test="${user.userName == 'admin'}">
+                            <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=edit&code=${product.code}" style="width: 90px">Edit</a>
+                            <a class="btn btn-outline-danger btn-rounded waves-effect" href="${pageContext.request.contextPath}/products?action=delete&code=${product.code}" style="width: 90px">Delete</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${pageContext.request.contextPath}/order?action=order&code=${product.code}" class="btn btn-primary">Add to cart</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>

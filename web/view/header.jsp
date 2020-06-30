@@ -83,7 +83,7 @@
                                 <span class="text-dark"><c:out value="${user.userName}"/></span>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Product</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/products?action=display">Product</a>
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/users?action=display">
                                     User</a>
                                 <a class="dropdown-item" href="logout">Logout</a>
@@ -96,7 +96,10 @@
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbardropShop">
                                 <span class="text-dark"><c:out value="${user.userName}"/></span>
                             </a>
+
                             <div class="dropdown-menu">
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/order?action=cart">
+                                    Cart</a>
                                 <a class="dropdown-item" href="logout">Logout</a>
 
                             </div>
